@@ -4,3 +4,4 @@
 **/node_modules
 /dist
 .DS_Store
+**jest_html_reporters.html

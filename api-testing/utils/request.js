@@ -1,5 +1,5 @@
 const req = require("supertest");
-const { createAddressData } = require("./createData");
+const { createAddressData, createCustomerData } = require("./createData");
 
 const API_URL = process.env.API_URL;
 
@@ -29,6 +29,20 @@ const setAddress = async (token) => {
     });
 };
 
+const createCustomer = async (token) => {
+  const addressId = await setAddress(token);
+  const newCustomer = await createCustomerData(addressId);
+
+  return await req(API_URL)
+    .post("/customers")
+    .send(newCustomer)
+    .set("Accept", "application/json")
+    .set("Authorization", `Bearer ${token}`)
+    .then((response) => {
+      return response.body.id;
+    });
+};
+
 const getRequest = async (path, token) => {
   return await req(API_URL)
     .get(path)
@@ -50,4 +64,10 @@ const postRequest = async (path, token, body) => {
     });
 };
 
-module.exports = { getAccessToken, setAddress, getRequest, postRequest };
+module.exports = {
+  getAccessToken,
+  setAddress,
+  createCustomer,
+  getRequest,
+  postRequest,
+};

@@ -25,13 +25,13 @@ const setAddress = async (token) => {
     .set("Accept", "application/json")
     .set("Authorization", `Bearer ${token}`)
     .then((response) => {
-      return response.body.id;
+      return response.body;
     });
 };
 
 const createCustomer = async (token) => {
-  const addressId = await setAddress(token);
-  const newCustomer = await createCustomerData(addressId);
+  const address = await setAddress(token);
+  const newCustomer = await createCustomerData(address.id);
 
   return await req(API_URL)
     .post("/customers")

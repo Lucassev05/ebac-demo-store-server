@@ -27,7 +27,7 @@ describe("Customers", () => {
 
   it("(HealthCheck) Create customer", async () => {
     const addressId = await setAddress(token);
-    const newCustomer = await createCustomerData(addressId);
+    const newCustomer = await createCustomerData(addressId.id);
 
     await postRequest("/customers", token, newCustomer).then((response) => {
       expect(response.statusCode).toEqual(201);
@@ -36,25 +36,25 @@ describe("Customers", () => {
   });
 
   it("(HealthCheck) Get a specific customer", async () => {
-    const consumer = await createCustomer(token);
+    const customer = await createCustomer(token);
 
-    await getRequest(`/customers/${consumer.id}`, token).then((response) => {
+    await getRequest(`/customers/${customer.id}`, token).then((response) => {
       expect(response.statusCode).toEqual(200);
       expect(response.body).toHaveProperty("id");
-      expect(response.body.id).toEqual(consumer.id);
+      expect(response.body.id).toEqual(customer.id);
     });
   });
 
   it("(HealthCheck) Edit customer", async () => {
-    const consumer = await createCustomer(token);
+    const customer = await createCustomer(token);
     const addressId = await setAddress(token);
-    const newCustomer = await createCustomerData(addressId);
+    const newCustomer = await createCustomerData(addressId.id);
 
-    await patchRequest(`/customers/${consumer.id}`, token, newCustomer).then(
+    await patchRequest(`/customers/${customer.id}`, token, newCustomer).then(
       (response) => {
         expect(response.statusCode).toEqual(200);
         expect(response.body).toHaveProperty("id");
-        expect(response.body.id).toEqual(consumer.id);
+        expect(response.body.id).toEqual(customer.id);
         expect(response.body.address.id).toEqual(newCustomer.address.id);
         expect(response.body.email).toEqual(newCustomer.email);
         expect(response.body.firstName).toEqual(newCustomer.firstName);
@@ -65,11 +65,11 @@ describe("Customers", () => {
   });
 
   it("(HealthCheck) Delete customer", async () => {
-    const consumer = await createCustomer(token);
+    const customer = await createCustomer(token);
 
-    await deleteRequest(`/customers/${consumer.id}`, token).then((response) => {
+    await deleteRequest(`/customers/${customer.id}`, token).then((response) => {
       expect(response.statusCode).toEqual(200);
-      expect(response.body).toEqual(consumer);
+      expect(response.body).toEqual(customer);
     });
   });
 

@@ -39,7 +39,7 @@ const createCustomer = async (token) => {
     .set("Accept", "application/json")
     .set("Authorization", `Bearer ${token}`)
     .then((response) => {
-      return response.body.id;
+      return response.body;
     });
 };
 
@@ -64,10 +64,33 @@ const postRequest = async (path, token, body) => {
     });
 };
 
+const patchRequest = async (path, token, body) => {
+  return await req(API_URL)
+    .patch(path)
+    .send(body)
+    .set("Accept", "application/json")
+    .set("Authorization", `Bearer ${token}`)
+    .then((response) => {
+      return response;
+    });
+};
+
+const deleteRequest = async (path, token) => {
+  return await req(API_URL)
+    .delete(path)
+    .set("Accept", "application/json")
+    .set("Authorization", `Bearer ${token}`)
+    .then((response) => {
+      return response;
+    });
+};
+
 module.exports = {
   getAccessToken,
   setAddress,
   createCustomer,
   getRequest,
   postRequest,
+  patchRequest,
+  deleteRequest,
 };

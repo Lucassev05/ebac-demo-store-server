@@ -66,12 +66,4 @@ describe("Address", () => {
       expect(response.body).toEqual(address);
     });
   });
-
-  // it("(HealthCheck) Create customer's order", async () => {});
-
-  // it("(HealthCheck) List customer's order", async () => {});
-
-  // it("(HealthCheck) Edit customer's order", async () => {});
-
-  // it("(HealthCheck) Delete customer's order", async () => {});
 });

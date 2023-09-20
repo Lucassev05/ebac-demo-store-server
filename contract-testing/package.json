@@ -1,0 +1,29 @@
+{
+  "name": "pactjs-contract-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:customer": "jest --runInBand test/customer.spec.js"
+  },
+  "jest": {
+    "testTimeout": 20000,
+    "testEnvironment": "node",
+    "transform": {
+      ".(js|jsx|ts|tsx)": "@sucrase/jest-plugin"
+    }
+  },
+  "keywords": [],
+  "author": "lucasevangelista",
+  "license": "ISC",
+  "dependencies": {
+    "@pact-foundation/pact": "^12.1.0",
+    "@pact-foundation/pact-node": "^10.17.7",
+    "@sucrase/jest-plugin": "^3.0.0",
+    "@types/jest": "^29.5.5",
+    "axios": "^1.5.0",
+    "dotenv": "^16.3.1",
+    "jest": "^29.7.0",
+    "start-server-and-test": "^2.0.0"
+  }
+}

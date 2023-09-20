@@ -1,0 +1,3 @@
+{
+  "query": "query{customers{address{address_1,address_2,city,createdAt,customers:id,id,state,updatedAt,zip},createdAt,email,firstName,id,lastName,orders{createdAt,customer:id,discount,id,product{createdAt,description,id,itemPrice,name,orders:id,updatedAt},quantity,totalPrice,updatedAt},phone,updatedAt}}"
+}

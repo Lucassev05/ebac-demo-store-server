@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:customer": "jest --runInBand test/customer.spec.js"
+    "test:customer": "jest --runInBand test/customer.spec.js",
+    "test:provider": "jest --runInBand test/provider.spec.js",
+    "publish:broker": "node broker/publish.broker.js"
   },
   "jest": {
     "testTimeout": 20000,

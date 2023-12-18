@@ -1,0 +1,29 @@
+version: "1.0"
+
+services:
+  db:
+    build:
+      context: . # Caminho para o Dockerfile da sua aplicação principal
+    working_dir: /db
+    command: sh -c "npm run docker:db"
+    ports:
+      - "5432:5432" # Mapeamento de portas para acesso ao banco de dados
+
+  app:
+    build:
+      context: . # Caminho para o Dockerfile da sua aplicação principal
+    working_dir: /app
+    depends_on:
+      - db
+    command: sh -c "npm run docker:db && npm start"
+    ports:
+      - "3000:3000" # Mapeamento de portas para acessar sua aplicação
+
+  tests:
+    build:
+      context: ./contract-testing
+      dockerfile: . # Caminho para o Dockerfile dos seus testes
+    depends_on:
+      - db
+      - app
+    command: sh -c "npm run test:customer"

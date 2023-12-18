@@ -24,11 +24,13 @@ describe("Contract Costumer Test", () => {
           method: "POST",
           path: "/graphql",
           headers: {
-            Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjk2NDQ5NzQyLCJleHAiOjE2OTY2MjI1NDJ9.kJcFKxwgE1d2jx2CnxY7Iq_QLPIIfd3ko7F2epFyi8w",
-            "Content-type": 'application/json',
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjk2NDQ5NzQyLCJleHAiOjE2OTY2MjI1NDJ9.kJcFKxwgE1d2jx2CnxY7Iq_QLPIIfd3ko7F2epFyi8w",
+            "Content-type": "application/json",
           },
           body: {
-            query: "query{customers{address{address_1,address_2,city,createdAt,customers:id,id,state,updatedAt,zip},createdAt,email,firstName,id,lastName,orders{createdAt,customer:id,discount,id,product{createdAt,description,id,itemPrice,name,orders:id,updatedAt},quantity,totalPrice,updatedAt},phone,updatedAt}}",
+            query:
+              "query{customers{address{address_1,address_2,city,createdAt,customers:id,id,state,updatedAt,zip},createdAt,email,firstName,id,lastName,orders{createdAt,customer:id,discount,id,product{createdAt,description,id,itemPrice,name,orders:id,updatedAt},quantity,totalPrice,updatedAt},phone,updatedAt}}",
           },
         },
         willRespondWith: {
